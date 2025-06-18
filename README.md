@@ -51,6 +51,8 @@ You are encouraged to:
   * Fetch the latest block
 * **React Frontend**: UI to interact with the blockchain through APIs.
 
+> **See demo of a working solution here (for reference): https://drive.google.com/drive/folders/1rQp67A0Td-JShIDmIupQMBQzSy5IrQRV?usp=drive_link**
+
 
 ## 🧪 API Endpoints
 
