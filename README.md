@@ -85,6 +85,12 @@ Deadline for submission: **5th July' 25**
 
 >**BONUS** marks will be awarded for any kind of unique thinking or cool side application related to the core concept of this project.
 
+**Update:**
+
+Here's a very good submission and participants can take reference from it's a great representation of how to build services around core blockchain network:
+
+https://chain-rxn-project2-39j2-ten.vercel.app/
+
 ---
 
 #### - **BIB** (Blockchain at IIT Bhilai)  
