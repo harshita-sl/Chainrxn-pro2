@@ -81,6 +81,8 @@ Returns the most recent block.
 
 Submit your responses here: https://forms.gle/w4Y1Mf6QdEFhDJ2p7
 
+(Please do not raise PRs for this project, evaluation is based on the final solution you present and not the number of PRs you are able to get merged.)
+
 Deadline for submission: **5th July' 25**
 
 >**BONUS** marks will be awarded for any kind of unique thinking or cool side application related to the core concept of this project.
