@@ -1,31 +1,25 @@
 const sha256 = require('crypto-js/sha256');
 
-// Block represents a single unit in the blockchain containing data and a reference to the previous block's hash
+// index: creates immutability for each Block
+// timestamp: obvious
+// data: can be any type of data in a JSON format
+// prevHash: hash of the previous block -> used to calculate the hash of the new block -> maintaining the chained structure 
+// hash: hash of the current block
+
+// calcHash: calculates hash from all the above parameters and outputs a new hash for this block using SHA256
+
 class Block {
     constructor(index, timestamp, data, prevHash) {
-        // Assign the index to the block (position in the chain)
         this.index = index;
-
-        // Store the timestamp of when the block is created
         this.timestamp = timestamp;
-
-        // Store any data passed into the block (typically transaction or record data)
         this.data = data;
-
-        // Store the hash of the previous block to ensure linkage in the chain
         this.prevHash = prevHash;
-
-        // Compute and assign the hash of this block using its contents
-        this.hash = this.calcHash();  // ← Implement this method below
+        this.hash = this.calcHash();
+        
     }
 
-    // TODO: Implement a method that calculates the SHA256 hash of the block's contents
-    // Hint:
-    // - Use this.index, this.timestamp, this.prevHash, and JSON.stringify(this.data)
-    // - Concatenate them into a single string and apply sha256 hashing
-    // - Convert the result to string using .toString()
     calcHash() {
-        // return sha256(...).toString();
+        return sha256(this.index + this.timestamp + this.prevHash + JSON.stringify(this.data)).toString();
     }
 }
 

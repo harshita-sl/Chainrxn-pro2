@@ -2,72 +2,67 @@ import { useState } from "react";
 import axios from "axios";
 
 const AddBlock = () => {
-  // State to store user input for block data
   const [blockData, setBlockData] = useState("");
-
-  // State to store messages (success/failure)
   const [blockMsg, setBlockMsg] = useState("");
-
-  // Loading state to show spinner or disable button
   const [loading, setLoading] = useState(false);
 
-  // Update blockData when input field changes
   const handleDataInput = (e) => {
-    // TODO: Set blockData state to the current input value
+    setBlockData(e.target.value);
   };
 
-  // Function to send block data to backend and add block
   const handleAddBlock = async () => {
-    // If input is empty, show warning message
-    // TODO: If blockData is empty, setBlockMsg to a warning and return early
+    if (!blockData) {
+      setBlockMsg("Add some text as block data");
+      return;
+    }
 
-    // TODO: Set loading state to true and clear any old messages
+    setLoading(true);
+    setBlockMsg(""); // Clear previous messages
 
     try {
-      // TODO:
-      // - Make a POST request to backend at /addBlock
-      // - Send blockData in the request body as { data: blockData }
-      // - Await the response
-
-      // TODO:
-      // - Get the block hash from response
-      // - Truncate it to first 7 characters and append "..."
-      // - Format a message like: "Block added successfully! Block Hash: ..."
-
-      // - Set this message in blockMsg state
+      const response = await axios.post(
+        "http://localhost:3005/addBlock",
+        { data: blockData }
+      );
+      
+      // Limit the block hash to 7 characters and append "..."
+      const limitedHash = `${response.data.block.hash.slice(0, 7)}...`;
+      
+      // Display success message with the truncated block hash
+      const blockHash = `Block added successfully!\nBlock Hash: ${limitedHash}`;
+      setBlockMsg(blockHash);
     } catch (error) {
-      // TODO: Set an error message in blockMsg if request fails
+      setBlockMsg("Failed to add block. Please try again.");
     } finally {
-      // TODO: Set loading state to false
+      setLoading(false);
     }
   };
 
   return (
-    <div className="mb-10 mt-5 bg-gray-100 flex items-center justify-center p-4 sm:p-6">
-      <div className="bg-white p-4 rounded-lg shadow-lg w-full mx-auto">
+    <div className="mb-10 mt-5 bg-gray-100 flex items-center justify-center p-3 sm:p-3 rounded-lg">
+      <div className="bg-gray-100 p-4 rounded-lg shadow-lg w-full mx-auto">
         <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-          Add New Block
+          Create New Block
         </h1>
 
-        {/* Input for block data */}
         <input
           type="text"
           placeholder="Enter text data for the block"
           className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={blockData}
-          onChange={handleDataInput} // TODO: Call input handler
+          onChange={handleDataInput}
         />
 
-        {/* Button to add block */}
-        <button
-          className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-200"
-          onClick={handleAddBlock} // TODO: Call add block handler
-          disabled={loading}
-        >
-          {loading ? "Mining new Block..." : "Add Block"}
-        </button>
+        <div className="flex justify-center">
+          <button
+            className="w-40 bg-gray-800 text-white font-semibold p-3 rounded-lg hover:bg-gray-700 transition hover:scale-105"
+            onClick={handleAddBlock}
+            disabled={loading}
+          >
+            {loading ? "Mining new Block..." : "Add Block"}
+          </button>
+        </div>
 
-        {/* Message box for success/failure output */}
         {blockMsg && (
           <div className="mt-4 p-3 bg-blue-50 border border-blue-300 rounded-lg text-center shadow-md w-full max-w-full break-words overflow-auto">
             <p className="text-sm font-semibold text-gray-700 whitespace-pre-wrap break-words">

@@ -1,98 +1,58 @@
-# ChainConnect - Interact with the Blockchain
+# MyBlockchain - Blockchain Network Project
 
-Welcome to **Project 2**! In this challenge, you will implement a very simple blockchain and make it interactive by building a frontend using React.
+This project implements a basic blockchain network using JavaScript. It follows blockchain principles like immutability, data integrity, and linking blocks with hashes. The project includes a user-friendly website to interact with the blockchain.
 
-## 🚀 How to Participate
+## Features
 
-1. **Fork the repository**
+- **Blockchain Network**: The core of the project uses blocks linked with hashes, ensuring data integrity and immutability.
+  
+- **OOP Design**: Built using Object-Oriented Programming (OOP), with classes for `Chain`, `Block`, and other components.
 
-2. **Clone your forked repository**
+- **Immutability**: Once data is added to a block, it cannot be changed. Each block’s hash links to the previous one, preventing tampering.
 
-3. **Complete the backend**
+- **SHA256 Hashing**: Blocks are linked using SHA256 hashing to ensure data integrity.
 
-   * Navigate to the backend directory:
+- **API-Driven Backend**: The blockchain network is powered by APIs for:
+  - Adding blocks.
+  - Viewing the blockchain.
+  - Fetching the latest block.
 
-     ```bash
-     cd backend
-     ```
-   * Fill in the `TODO` comments in the files. The guiding structure is already in place.
-   * Run the backend and ensure it functions as expected.
+- **React.js Frontend**: Provides a user-friendly interface to interact with the blockchain via the API.
 
-4. **Complete the frontend**
+## Technologies Used
 
-   * Navigate to the frontend directory:
+- **JavaScript**: Used for the entire blockchain network with OOP principles.
+- **SHA256**: For hashing blocks and ensuring data integrity.
+- **Express.js**: For building the backend API.
+- **React.js**: For the frontend interface.
 
-     ```bash
-     cd frontend
-     ```
-   * Implement the missing logic in the `TODO` comments.
-   * Make API calls to your running backend.
+## How to Use
 
-### 🎯 Bonus
+Visit the website to interact with the blockchain network:
+[**MyBlockchain Website**]([https://your-hosted-website.com](https://myblockchain-frontend.onrender.com/))
 
-You are encouraged to:
+### Available Features:
+1. **Add a Block**: Submit data to create a new block in the blockchain.
+2. **View the Blockchain**: View the entire blockchain and its details.
+3. **Get the Latest Block**: Fetch details of the most recently added block.
 
-* Revamp the architecture or design if you have a better idea.
-* Build other simple apps that use the blockchain backend.
+## API Endpoints (for Developers)
 
-> **Note:** The goal here is not to build a full-featured blockchain, but to help you understand its core functioning. In **Project 3**, we will interact with a live Bitcoin node.
+1. **POST /addBlock**  
+   Adds a new block.  
+   - Request: `{ "data": "Your data here" }`  
+   - Response: `200 OK` with the new block.
 
-### ✅ Minimum Required Features
+2. **GET /getChain**  
+   Retrieves the full blockchain.  
+   - Response: JSON array of all blocks.
 
+3. **GET /getLatestBlock**  
+   Retrieves the latest block.  
+   - Response: JSON object of the latest block.
 
-* **Blockchain Network**: Core structure with blocks linked by hashes to ensure integrity.
-* **OOP Design**: Uses object-oriented principles with `Block` and `Chain` classes.
-* **Immutability**: Data in a block can't be changed; every block depends on the previous one.
-* **SHA256 Hashing**: Ensures data integrity and tamper-proof blocks.
-* **API-Driven Backend**:
+## Deployment
 
-  * Add a new block
-  * View the entire chain
-  * Fetch the latest block
-* **React Frontend**: UI to interact with the blockchain through APIs.
-
-> **See demo of a working solution here (for reference): https://drive.google.com/drive/folders/1rQp67A0Td-JShIDmIupQMBQzSy5IrQRV?usp=drive_link**
-
-
-## 🧪 API Endpoints
-
-### POST `/addBlock`
-
-Adds a new block.
-
-* **Request Body**:
-
-  ```json
-  { "data": "Your data here" }
-  ```
-* **Response**: `200 OK` with the newly created block.
-
-### GET `/getChain`
-
-Returns the full blockchain.
-
-* **Response**: JSON array of all blocks.
-
-### GET `/getLatestBlock`
-
-Returns the most recent block.
-
-* **Response**: JSON object with latest block data.
-
-Submit your responses here: https://forms.gle/w4Y1Mf6QdEFhDJ2p7
-
-(Please do not raise PRs for this project, evaluation is based on the final solution you present and not the number of PRs you are able to get merged.)
-
-Deadline for submission: **5th July' 25**
-
->**BONUS** marks will be awarded for any kind of unique thinking or cool side application related to the core concept of this project.
-
-**Update:**
-
-Here's a very good submission and participants can take reference from it's a great representation of how to build services around core blockchain network:
-
-https://chain-rxn-project2-39j2-ten.vercel.app/
+The project is hosted online, so there's no need for users to install dependencies or run local servers. Just visit the website to start using the blockchain network.
 
 ---
-
-#### - **BIB** (Blockchain at IIT Bhilai)  

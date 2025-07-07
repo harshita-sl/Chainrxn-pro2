@@ -2,37 +2,29 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const GetLatestBlock = () => {
-  // State to hold the latest block's data
   const [latestBlock, setLatestBlock] = useState(null);
-
-  // State for error handling
   const [error, setError] = useState(null);
-
-  // State to indicate loading status
   const [loading, setLoading] = useState(true);
 
-  // Fetch the latest block from the backend when the component mounts
   useEffect(() => {
     const fetchLatestBlock = async () => {
       try {
-        // TODO: Make a GET request to http://localhost:3005/getLatestBlock
-        // and store the result in the latestBlock state
+        const response = await axios.get("http://localhost:3005/getLatestBlock");
+        setLatestBlock(response.data);
       } catch (err) {
-        // TODO: If request fails, set an appropriate error message
+        setError("Failed to fetch the latest block. Please try again.");
       } finally {
-        // TODO: Whether success or failure, stop the loading spinner
+        setLoading(false);
       }
     };
 
     fetchLatestBlock();
   }, []);
 
-  // Display a loading message while data is being fetched
   if (loading) {
     return <div className="text-center text-blue-600 text-lg">Loading...</div>;
   }
 
-  // Display error message if something went wrong
   if (error) {
     return <div className="text-center text-red-600 text-lg">{error}</div>;
   }
@@ -42,52 +34,37 @@ const GetLatestBlock = () => {
       <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 text-center">
         Latest Block
       </h1>
-
-      {/* If latestBlock exists, display it */}
       {latestBlock ? (
         <div className="block-card w-full max-w-screen-sm bg-white border border-gray-300 rounded-lg shadow-lg p-4 overflow-hidden">
-          
-          {/* Block Index */}
           <div className="mb-3">
             <p className="text-sm font-semibold text-gray-700">
-              <span className="text-blue-600">Block Index:</span> {/* block index */}
+              <span className="text-blue-600">Block Index:</span> {latestBlock.index}
             </p>
           </div>
-
-          {/* Timestamp */}
           <div className="mb-3">
             <p className="text-sm font-semibold text-gray-700">
               <span className="text-blue-600">Block Timestamp:</span>{" "}
-              {/* TODO: Convert latestBlock.timestamp to a readable string */}
+              {new Date(latestBlock.timestamp).toLocaleString()}
             </p>
           </div>
-
-          {/* Previous Hash */}
           <div className="mb-3">
             <p className="text-sm font-semibold text-gray-700">
               <span className="text-blue-600">Previous Hash:</span>
             </p>
-            {/* TODO: Show previous hash */}
-            <p className="text-xs font-mono text-gray-600 break-all">{/* prevHash */}</p>
+            <p className="text-xs font-mono text-gray-600 break-all">{latestBlock.prevHash}</p>
           </div>
-
-          {/* Current Hash */}
           <div className="mb-3">
             <p className="text-sm font-semibold text-gray-700">
               <span className="text-blue-600">Hash:</span>
             </p>
-            {/* TODO: Show current hash */}
-            <p className="text-xs font-mono text-gray-600 break-all">{/* hash */}</p>
+            <p className="text-xs font-mono text-gray-600 break-all">{latestBlock.hash}</p>
           </div>
-
-          {/* Block Data */}
           <div className="mb-3">
             <p className="text-sm font-semibold text-gray-700">
               <span className="text-blue-600">Data:</span>
             </p>
-            {/* TODO: Show data inside a styled container */}
             <p className="text-xs text-gray-800 bg-blue-100 p-2 rounded-md break-all">
-              {/* block data */}
+              {latestBlock.data}
             </p>
           </div>
         </div>
