@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_BASE = "https://chainrxn-pro2.onrender.com";
+
 const Chain = () => {
   const [blockchain, setBlockchain] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ const Chain = () => {
   useEffect(() => {
     const fetchBlockchain = async () => {
       try {
-        const response = await axios.get("http://localhost:3005/getChain"); 
+        const response = await axios.get("${API_BASE}/getChain"); 
         setBlockchain(response.data);
       } catch (err) {
         setError("Failed to fetch blockchain data. Please try again.");
