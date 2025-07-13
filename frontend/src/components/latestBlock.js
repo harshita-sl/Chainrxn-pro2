@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_BASE = "https://chainrxn-pro2.onrender.com";
+
 const GetLatestBlock = () => {
   const [latestBlock, setLatestBlock] = useState(null);
   const [error, setError] = useState(null);
@@ -9,7 +11,7 @@ const GetLatestBlock = () => {
   useEffect(() => {
     const fetchLatestBlock = async () => {
       try {
-        const response = await axios.get("http://localhost:3005/getLatestBlock");
+        const response = await axios.get("${API_BASE}/getLatestBlock");
         setLatestBlock(response.data);
       } catch (err) {
         setError("Failed to fetch the latest block. Please try again.");
