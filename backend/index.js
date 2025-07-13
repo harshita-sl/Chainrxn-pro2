@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 const port = process.env.port || 3005;
+const url = "https://chainrxn-pro2.onrender.com";
 
 app.use(express.json());
 
