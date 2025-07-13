@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API_BASE = "https://chainrxn-pro2.onrender.com";
+
 const AddBlock = () => {
   const [blockData, setBlockData] = useState("");
   const [blockMsg, setBlockMsg] = useState("");
@@ -21,7 +23,7 @@ const AddBlock = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3005/addBlock",
+        "${API_BASE}/addBlock",
         { data: blockData }
       );
       
