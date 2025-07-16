@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE from "../config"; // or wherever your API base is
 
-const API_BASE = "https://chainrxn-pro2.onrender.com";
 
 const Chain = () => {
   const [blockchain, setBlockchain] = useState([]);
