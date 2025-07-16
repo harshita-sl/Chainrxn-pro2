@@ -11,7 +11,7 @@ const Chain = () => {
   useEffect(() => {
     const fetchBlockchain = async () => {
       try {
-        const response = await axios.get("${API_BASE}/getChain"); 
+        const response = await axios.get(`${API_BASE}/getChain`); 
         setBlockchain(response.data);
       } catch (err) {
         setError("Failed to fetch blockchain data. Please try again.");
